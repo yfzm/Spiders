@@ -4,16 +4,21 @@ import urllib2
 import re
 import os
 
+# Define constants
+DEFAULT_NUM = 200
+MAX_NUM = 2000
+MAX_INDEX = 30000
+
 
 class Spider:
-    def __init__(self, number=200):
-        max_num = 2000
+    def __init__(self, number=DEFAULT_NUM):
+        max_num = MAX_NUM
 
-        if not (type(number) == int and number <= max_num):
-            number = 200
-        self.num = number
+        self.num = DEFAULT_NUM
+        if type(number) == int and 0 < number <= max_num:
+            self.num = number
 
-        self.begin = random.randint(0, max_num - number)
+        self.begin = random.randint(0, MAX_INDEX)
 
         self.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
         self.headers = {"Accept-Language": "zh-CN,zh;q=0.8", 'User-Agent': self.user_agent}
@@ -43,7 +48,6 @@ class Spider:
         while length < 5:
             string = '0' + string
             length += 1
-
         return string
 
     def start(self):
