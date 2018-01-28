@@ -40,9 +40,12 @@ class Labels:
 
     def parse_json(self):
         obj = json_load.json_loads_byteified(self.json)
-        item_list = obj['data']['itemParams']['info']['set']
+        try:
+            item_list = obj['data']['itemParams']['info']['set']
+        except KeyError:
+            item_list = []
 
-        json_data = '{'
+        json_data = '{ '
         for item in item_list:
             key = item['key'].decode('utf-8')
             value = item['value'].decode('utf-8')
