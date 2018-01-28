@@ -5,17 +5,6 @@ import json_load
 from selenium import webdriver
 
 
-# END = 20
-
-# PAGE_HEAD = 166
-# PAGE_TAIL = 22
-
-# coat = [URL_COAT, 166, 22, 'data/coat/']
-# skirt = [URL_SKIRT, 165, 22, 'data/skirt/']
-# trousers = [URL_TROUSERS, 166, 22, 'data/trousers/']
-# shoes = [URL_SHOES, 166, 22, 'data/shoes/']
-
-
 class Urls:
 
     def __init__(self, cloth, pages=20):

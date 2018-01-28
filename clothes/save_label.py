@@ -5,16 +5,6 @@ import json_load
 
 from selenium import webdriver
 
-# ROOT_PATH = 'data/coat/'
-# URL_CLOTHES = 'http://shop.mogujie.com/ajax/mgj.pc.detailinfo/v1?_ajax=1&itemId='
-
-# PAGE_HEAD = 62
-# PAGE_TAIL = 14
-#
-# coat = ['data/coat/']
-# skirt = ['data/skirt/']
-# trousers = ['data/trousers/']
-
 
 class Labels:
 
