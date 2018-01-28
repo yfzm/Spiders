@@ -12,10 +12,13 @@ coat_label = ['袖型', '版型', '衣长', '风格', '袖长', '领型']
 skirt_label = ['裙长', '材质', '裙型', '风格', '图案']
 # trousers_label = ['尺码', '风格', '材质', '闭合方式', '季节', '裤长', '颜色', '厚薄']
 trousers_label = ['风格', '材质', '裤长', '厚薄']
+# shoes_label = ['鞋面材质', '跟高', '流行元素', '鞋面特殊工艺效果', '鞋底材质', '尺码', '风格', '闭合方式', '季节', '颜色', '图案']
+shoes_label = ['鞋面材质', '跟高', '流行元素', '鞋面特殊工艺效果',  '风格', '图案']
 
 coat = ['data/coat/label/', coat_label]
 skirt = ['data/skirt/label/', skirt_label]
 trousers = ['data/trousers/label/', trousers_label]
+shoes = ['data/shoes/label/', shoes_label]
 
 
 def get_json_file_names(root_path):
@@ -29,6 +32,16 @@ def get_json_obj(path):
     return json_load.json_loads_byteified(json_raw)
 
 
+def deal_obj_value(s):
+    if s.find(',') != -1:
+        s = s[0:s.find(',')]
+    if s.find('(') != -1:
+        s = s[0:s.find('(')]
+    if s.find('（') != -1:
+        s = s[0:s.find('（')]
+    return s
+
+
 def create_description_file(obj_map, category):
     description_data = {}
     for label in category[1]:
@@ -37,8 +50,8 @@ def create_description_file(obj_map, category):
     for k, obj in obj_map.iteritems():
         for obj_key, obj_value in obj.iteritems():
             if obj_key in description_data.keys():
-                if obj_value.find(',') != -1:
-                    obj_value = obj_value[0:obj_value.find(',')]
+                obj_value = deal_obj_value(obj_value)
+
                 if obj_value not in description_data[obj_key]:
                     description_data[obj_key].append(obj_value)
 
@@ -63,8 +76,9 @@ def create_label_file(obj_map, category, description_data):
         label_data = {}
         for good_id, obj in obj_map.iteritems():
             if label in obj.keys():  # 确保商品含有此项数据
-                if obj[label] in tags:  # 确保此数据是已知类型
-                    label_data[good_id] = tags.index(obj[label])
+                obj_value = deal_obj_value(obj[label])
+                if obj_value in tags:  # 确保此数据是已知类型
+                    label_data[good_id] = tags.index(obj_value)
                 else:
                     label_data[good_id] = -1
             else:
@@ -120,7 +134,9 @@ def main():
     # test_label(skirt)
     # run(skirt)
     # test_label(trousers)
-    run(trousers)
+    # run(trousers)
+    # test_label(shoes)
+    run(shoes)
 
 
 if __name__ == '__main__':
