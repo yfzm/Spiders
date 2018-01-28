@@ -13,6 +13,7 @@ PAGE_TAIL = 14
 
 coat = ['data/coat/']
 skirt = ['data/skirt/']
+trousers = ['data/trousers/']
 
 
 class Labels:
@@ -43,7 +44,7 @@ class Labels:
         json_data += '}'
         # print json_data
 
-        label_file = codecs.open(self.root_path + 'label/' + self.clothes_id + '.json', 'w', 'utf-8')
+        label_file = codecs.open(self.root_path + 'label/raw/' + self.clothes_id + '.json', 'w', 'utf-8')
         label_file.write(json_data)
         # label_file.write('{')
         # for item in item_list:
@@ -62,5 +63,5 @@ class Labels:
 
 
 if __name__ == '__main__':
-    label = Labels(skirt)
+    label = Labels(trousers)
     label.run()
