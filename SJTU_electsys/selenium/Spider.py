@@ -1,3 +1,8 @@
+"""
+  Author: Li Hao
+  Last edited at 2018/1/31
+"""
+
 import codecs
 import time
 
@@ -74,6 +79,8 @@ class Spider:
             count += 1
             if count >= 5:
                 raise StandardError('Failed to log in, maybe there is something wrong with your username or password.')
+
+            time.sleep(1)
 
     def switch_to_score(self):
         self.driver.switch_to.frame('leftFrame')
