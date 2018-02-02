@@ -18,28 +18,19 @@ class Spider:
         self.username = username
         self.password = password
 
-        self.driver = webdriver.Chrome()
-        self.driver.set_window_size(1200, 800)
+        self.driver = webdriver.PhantomJS(executable_path='D:/Program Files/phantomjs-2.1.1/bin/phantomjs.exe')
+        # self.driver.set_window_size(1200, 800)
 
     def get_and_save_capt(self, element):
         self.driver.get_screenshot_as_file('cache/screenshot.png')
 
-        # left = int(element.location['x'])
-        # top = int(element.location['y'])
-        # right = left + int(element.size['width'])
-        # bottom = top + int(element.size['height'])
-
-        # The code above which assign left, top doesn't work for me.
-        # I have to use the 'magic number' to cut the picture well.
-        # However, it's a common way to get correct cut pictures using the commented code above.
-
-        left = 1080
-        top = 405
-        right = left + 125
-        bottom = top + 47
+        left = int(element.location['x'])
+        top = int(element.location['y'])
+        right = left + int(element.size['width'])
+        bottom = top + int(element.size['height'])
 
         im = Image.open('cache/screenshot.png')
-        im = im.crop((left, top, right, bottom))
+        im = im.crop((left + 2, top + 2, right - 2, bottom - 2))
         im.save('cache/captcha.png')
 
     @staticmethod
@@ -119,6 +110,8 @@ class Spider:
             print 'Succeed!'
         except StandardError as e:
             print e
+
+        self.driver.quit()
 
 
 if __name__ == '__main__':

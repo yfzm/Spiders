@@ -2,3 +2,7 @@ chromedriver.exe
 cache/
 *.txt
 *.csv
+*.log
+*.pyc
+
+test.py
