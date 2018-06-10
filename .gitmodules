@@ -1,0 +1,12 @@
+[submodule "spider-deep-fashion"]
+	path = spider-deep-fashion
+	url = https://github.com/yfzm/spider-deep-fashion
+[submodule "spider-recipe"]
+	path = spider-recipe
+	url = https://github.com/yfzm/spider-recipe
+[submodule "spider-sjtu-electsys"]
+	path = spider-sjtu-electsys
+	url = https://github.com/yfzm/spider-sjtu-electsys
+[submodule "spider-clothes"]
+	path = spider-clothes
+	url = https://github.com/yfzm/spider-clothes
